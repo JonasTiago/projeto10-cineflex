@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Poster() {
+export default function Poster({ urlMovie }) {
 
     return (
         <Posters>
-            <div>
-                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" />
-            </div>
+                <div>
+                    <img src={urlMovie} />
+                </div>
         </Posters>
     );
 };

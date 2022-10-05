@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import Main from "./Main";
 import Header from "./Header";
 import GlobalStyle from "./GlobalStyles";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CatalogPage from "./CatalogPage";
+import SessionPage from "./SessionPage";
 
 export default function App() {
     const [catalog, setCatalog] = useState([])
@@ -12,11 +14,19 @@ export default function App() {
     }
 
         , [])
+
+    if (catalog.length === 0) {
+        return <p>carregando</p>;
+    }
+
     return (
-        <>
+        <BrowserRouter>
             <GlobalStyle />
             <Header />
-            <Main catalog={catalog}/>
-        </>
+            <Routes>
+                <Route  path="/" element={<CatalogPage catalog={catalog} />} />
+                {/* <Route path="/" element={<SessionPage catalog={catalog} />} /> */}
+            </Routes>
+        </BrowserRouter>
     )
 }
