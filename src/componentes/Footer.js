@@ -1,12 +1,13 @@
 import styled from "styled-components"
 
 
-export default function Footer({date}){
+export default function Footer({url, title, date}){
+    console.log(url)
 
     return (
         <FooterStyle>
-            <img src={date.posterURL}/>
-            <h3>{date.title}</h3>
+            <img src={url}/>
+            <h3>{title} <br/>{date}</h3>
         </FooterStyle>
     )
 }

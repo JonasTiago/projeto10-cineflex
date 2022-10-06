@@ -5,9 +5,11 @@ export default function Poster({ urlMovie }) {
 
     return (
         <Posters>
+            <Link to="" >
                 <div>
                     <img src={urlMovie} />
                 </div>
+            </Link>
         </Posters>
     );
 };
