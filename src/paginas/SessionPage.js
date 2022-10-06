@@ -7,10 +7,10 @@ import FreeTime from "../componentes/FreeTime";
 
 export default function SessionPage() {
     const [date, setDate] = useState([]);
-    const {idMovie} = useParams(1);
+    const {idMovie} = useParams();
 
     useEffect(() => {
-        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/1/showtimes`).then(resposta => 
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`).then(resposta => 
         setDate(resposta.data));
     }, []);
 

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Poster({ urlMovie }) {
+export default function Poster({ urlMovie, idMovie }) {
 
     return (
         <Posters>
-            <Link to="" >
+            <Link to={`/sessoes/${idMovie}`} >
                 <div>
                     <img src={urlMovie} />
                 </div>

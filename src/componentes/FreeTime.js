@@ -1,11 +1,16 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function FreeTime({date}){
-    return(
+export default function FreeTime({ date }) {
+    return (
         <TimeStyle>
             <h4>{date.weekday} - {date.date}</h4>
             <div>
-                {date.showtimes.map( time => <button key={time.id}>{time.name}</button>)}
+                {date.showtimes.map(time =>
+                    <Link to={`/assentos/${time.id}`}>
+                        <button key={time.id}>{time.name}</button>
+                    </Link>
+                )}
             </div>
         </TimeStyle>
     )

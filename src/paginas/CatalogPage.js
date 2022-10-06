@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+
 import axios from 'axios'
 import styled from "styled-components"
 import Poster from "../componentes/Poster";
 
 export default function CatalogPage() {
-
     const [catalog, setCatalog] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,9 @@ export default function CatalogPage() {
         <Main>
             <h2>Selecione o filme</h2>
             <CatalogStyle>
-                {catalog.map(movie => <Poster urlMovie={movie.posterURL} key={movie.id} />)}
+                {catalog.map(movie =>
+                        <Poster key={movie.id} urlMovie={movie.posterURL} idMovie={movie.id} />
+                )}
             </CatalogStyle>
         </Main>
 

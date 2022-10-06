@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../componentes/Footer";
 import Seat from "../componentes/Seat";
 
 export default function SeatsPage() {
-
-    const [session, setSession] = useState([])
+    const [session, setSession] = useState([]);
+    const {idSession} = useParams(0);
 
     useEffect(() => {
-        axios.get("https://mock-api.driven.com.br/api/v5/cineflex/showtimes/1/seats").then(resposta => setSession(resposta.data))
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`).then(resposta => setSession(resposta.data));
     }, [])
 
 

@@ -12,9 +12,9 @@ export default function App() {
             <GlobalStyle />
             <Header />
             <Routes>
-                {/* <Route  path="/" element={<CatalogPage />} /> */}
-                {/* <Route path="/" element={<SessionPage />} /> */}
-                <Route path="/" element={<SeatsPage />} />
+                <Route  path="/" element={<CatalogPage />} />
+                <Route path="/sessoes/:idMovie" element={<SessionPage />} />
+                <Route path="/assentos/:idSession" element={<SeatsPage />} />
                 
             </Routes>
         </BrowserRouter>
