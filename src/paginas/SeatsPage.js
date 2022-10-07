@@ -13,8 +13,11 @@ export default function SeatsPage({ setSent }) {
     const { idSession } = useParams(0);
 
     function reservar(seatId, seatNum) {
-        setReserved([...reserved, seatId]);
-        setSeatNumb([...seatNumb, seatNum]);
+        setReserved(reserved.includes(seatId) ? reserved.filter(id => id !== seatId) :
+            [...reserved, seatId]
+            );
+        setSeatNumb(seatNumb.includes(seatNum) ? seatNumb.filter( num => num !== seatNum):
+            [...seatNumb, seatNum]);
     };
 
     useEffect(() => {
@@ -31,23 +34,22 @@ export default function SeatsPage({ setSent }) {
             <PageStyle>
                 <h2>Selecione o(s) assento(s)</h2>
                 <SectionSeat>
-
                     {session.seats.map(se =>
                         <Seat key={se.id} seatId={se.id} seatNum={se.name}
                             isAvailable={reserved.includes(se.id) ? undefined : se.isAvailable}
-                            reservar={reservar} />)}
+                            reservar={reservar} disabled={false}/>)}
 
                 </SectionSeat>
-                <Subtitle>
+                <Subtitle disabled>
                     <section>
-                        <Seat seatNum={''} isAvailable={true} />
+                        <Seat seatNum={''} isAvailable={undefined} disabled={true}/>
                         <p>Selecionado</p>
                     </section>
                     <section>
-                        <Seat seatNum={''} isAvailable={true} />
+                        <Seat seatNum={''} isAvailable={true} disabled={true}/>
                         <p>Disponivel</p>
                     </section><section>
-                        <Seat seatNum={''} isAvailable={false} />
+                        <Seat seatNum={''} isAvailable={false} disabled={true}/>
                         <p>Indisponivel</p>
                     </section>
                 </Subtitle>
@@ -94,13 +96,6 @@ const Subtitle = styled.section`
     width:60%;
     height:60px;
     margin:10px;
-    
-    section:nth-child(1){
-        button{
-            background-color:#1AAE9E;
-            border:1px solid #0E7D71;
-        }
-    }
 
     section{
         display:flex;

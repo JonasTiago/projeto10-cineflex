@@ -30,6 +30,7 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
                 ids: [...reserved],
             }
         );
+        console.log(form);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reserved]);
 
