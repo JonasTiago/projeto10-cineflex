@@ -1,29 +1,29 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export default function SuccessPage() {
+export default function SuccessPage({ sent }) {
+    const session = sent.session;
     return (
         <SuccessStyle>
             <h2>Pedido feito<br />
                 com sucesso!</h2>
             <div>
                 <h3>Filme e sessão</h3>
-                <p>Enola Holmes</p>
-                <p>24/06/2021 15:00</p>
+                <p>{session.movie.title}</p>
+                <p>{session.day.date} - {session.name}</p>
             </div>
             <div>
                 <h3>Ingressos</h3>
-                <p>Assento 15</p>
-                <p>Assento 16</p>
+                {sent.seats.map((id, indx) => <p key={indx}>Assento {id}</p>)}
             </div>
             <div>
                 <h3>Comprador</h3>
-                <p>Nome: {'nome'}</p>
-                <p>CPF: {'numero'}</p>
+                <p>Nome: {sent.name}</p>
+                <p>CPF: {sent.cpf}</p>
             </div>
             <button>Voltar pra Home</button>
         </SuccessStyle>
-    )
-}
+    );
+};
 
 const SuccessStyle = styled.div`
     margin-top:120px;
@@ -68,4 +68,4 @@ const SuccessStyle = styled.div`
             font-weight:400;
         
     }
-`
+`;

@@ -1,15 +1,13 @@
-import styled from "styled-components"
-
+import styled from "styled-components";
 
 export default function Footer({url, title, date}){
-
     return (
         <FooterStyle>
-            <img src={url}/>
+            <img src={url} alt='poster movie'/>
             <h3>{title} <br/>{date}</h3>
         </FooterStyle>
-    )
-}
+    );
+};
 
 const FooterStyle = styled.div`
     width:100%;
@@ -35,4 +33,4 @@ const FooterStyle = styled.div`
         font-family: 'Roboto', sans-serif;
         font-weight:400;
     }
-`
+`;

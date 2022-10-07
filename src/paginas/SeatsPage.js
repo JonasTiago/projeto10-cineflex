@@ -6,19 +6,21 @@ import Footer from "../componentes/Footer";
 import Form from "../componentes/Form";
 import Seat from "../componentes/Seat";
 
-export default function SeatsPage() {
+export default function SeatsPage({ setSent }) {
     const [session, setSession] = useState([]);
-    const { idSession } = useParams(0);
     const [reserved, setReserved] = useState([]);
+    const [seatNumb, setSeatNumb] = useState([]);
+    const { idSession } = useParams(0);
 
-    function reservar(seatId) {
-        setReserved([...reserved, seatId])
-        console.log(reserved)
-    }
+    function reservar(seatId, seatNum) {
+        setReserved([...reserved, seatId]);
+        setSeatNumb([...seatNumb, seatNum]);
+    };
 
     useEffect(() => {
-        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`).then(resposta => setSession(resposta.data));
-    }, [])
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`).then(resposta => setSession(resposta.data)).catch(resposta => console.log(resposta));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (session.length === 0) {
         return <p>carregando</p>;
@@ -49,22 +51,7 @@ export default function SeatsPage() {
                         <p>Indisponivel</p>
                     </section>
                 </Subtitle>
-                <Form reserved={reserved}/>
-                {/* <form onSubmit={sendReservation}>
-                    <label htmlFor="nome">
-                        Nome do comprador:<br />
-                        <input id="nome"
-                            type="text"
-                            placeholder="Digite seu nome..." />
-                    </label>
-                    <label htmlFor="cpf">
-                        CPF do comprador:<br />
-                        <input id="cpf" type="cpf" placeholder="Digite seu CPF..." />
-                    </label>
-                    <input type="submit"
-                        value="Reservar assento(s)"
-                    />
-                </form> */}
+                <Form reserved={reserved} setSent={setSent} seatNumb={seatNumb} session={session} />
             </PageStyle>
             <Footer url={session.movie.posterURL}
                 title={session.movie.title}
@@ -89,7 +76,7 @@ const PageStyle = styled.div`
 
     
 
-`
+`;
 
 const SectionSeat = styled.div`
     display:flex;
@@ -99,7 +86,7 @@ const SectionSeat = styled.div`
     height:190px;
     margin:20px;
 
-`
+`;
 
 const Subtitle = styled.section`
     display:flex;
@@ -130,4 +117,4 @@ const Subtitle = styled.section`
         }
 
     }
-`
+`;

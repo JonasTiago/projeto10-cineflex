@@ -5,9 +5,9 @@ export default function Seat({ seatId, seatNum, isAvailable, reservar }) {
     return (
         <>
             {isAvailable === undefined ?
-                <Selected onClick={() => reservar(seatId)}>{seatNum}</Selected> :
+                <Selected onClick={() => reservar(seatId, seatNum)}>{seatNum}</Selected> :
                 (isAvailable ?
-                    <Available onClick={() => reservar(seatId)}>{seatNum}</Available> :
+                    <Available onClick={() => reservar(seatId, seatNum)}>{seatNum}</Available> :
                     <Unavailable onClick={() => alert(`Assento ${seatNum} está ocupado`)}>{seatNum}</Unavailable>)}
         </>
     );
@@ -20,17 +20,17 @@ const SeatStyle = styled.button`
     font-size:11px;
     margin:8px 3px;
     
-`
+`;
 
 const Available = styled(SeatStyle)`
     background-color:#C3CFD9;
     border:1px solid #7B8B99;
-`
+`;
 const Selected = styled(SeatStyle)`
     background-color:#1AAE9E;
     border:1px solid #0E7D71;
-`
+`;
 const Unavailable = styled(SeatStyle)`
     background-color:#FBE192;
     border:1px solid #F7C52B;
-`
+`;

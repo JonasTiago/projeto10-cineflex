@@ -12,6 +12,7 @@ export default function SessionPage() {
     useEffect(() => {
         axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`).then(resposta => 
         setDate(resposta.data));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if(date.length === 0) {

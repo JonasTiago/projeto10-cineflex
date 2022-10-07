@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-
-import axios from 'axios'
-import styled from "styled-components"
+import axios from 'axios';
+import styled from "styled-components";
 import Poster from "../componentes/Poster";
 
 export default function CatalogPage() {
@@ -14,8 +13,6 @@ export default function CatalogPage() {
     if (catalog.length === 0) {
         return <p>carregando</p>;
     };
-
-    console.log(catalog);
 
     return (
         <Main>

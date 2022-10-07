@@ -3,42 +3,77 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Form({ reserved }) {
+export default function Form({ reserved, setSent, seatNumb, session }) {
+    const navigate = useNavigate();
     const [form, setForm] = useState(
         {
-            ids: [1],
-            name: 'jonas',
-            cpf: "156161321"
+            ids: [],
+            name: '',
+            cpf: '',
         }
-    )
+    );
 
-    
+    function fillForm(e) {
+        setForm(
+            {
+                ...form,
+                [e.target.name]: e.target.value,
+            }
+        );
+    };
+
+    useEffect(() => {
+
+        setForm(
+            {
+                ...form,
+                ids: [...reserved],
+            }
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [reserved]);
 
     function sendReservation(e) {
-        e.preventDefault()
-            const URL = 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many'
-            const body = form
-            axios.post(URL, body).then(resposta => console.log(resposta.data)).catch(resposta => console.log(resposta))
+        setSent({ ...form, seats: seatNumb, session: session });
+        e.preventDefault();
+        const URL = 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many';
+        const body = form;
+        axios.post(URL, body).then(() =>
+            navigate("/sucesso")
+
+        ).catch(resposta => console.log(resposta));
+
+        setForm({
+            ids: [],
+            name: '',
+            cpf: ''
+        });
     }
 
     return (
         <FormStyle onSubmit={sendReservation}>
-            <label htmlFor="nome">
+            <label htmlFor="name">
                 Nome do comprador:<br />
-                <input id="nome"
+                <input name="name"
                     type="text"
+                    value={form.name}
+                    onChange={fillForm}
                     placeholder="Digite seu nome..." />
             </label>
             <label htmlFor="cpf">
                 CPF do comprador:<br />
-                <input id="cpf" type="cpf" placeholder="Digite seu CPF..." />
+                <input name="cpf"
+                    type="cpf"
+                    value={form.cpf}
+                    onChange={fillForm}
+                    placeholder="Digite seu CPF..." />
             </label>
             <input type="submit"
                 value="Reservar assento(s)"
             />
         </FormStyle>
-    )
-}
+    );
+};
 
 const FormStyle = styled.form`
     display:flex;
@@ -78,4 +113,4 @@ const FormStyle = styled.form`
         font-weight:400;
     }
 
-`
+`;

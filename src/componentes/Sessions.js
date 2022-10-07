@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function Sessions({ date }) {
     return (
@@ -13,8 +13,8 @@ export default function Sessions({ date }) {
                 )}
             </div>
         </TimeStyle>
-    )
-}
+    );
+};
 
 const TimeStyle = styled.div`
     display:flex;
@@ -41,5 +41,5 @@ const TimeStyle = styled.div`
             border-radius:3px;
         }
     }
-    
-`
+
+`;

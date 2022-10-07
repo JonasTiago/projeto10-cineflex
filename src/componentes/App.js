@@ -8,7 +8,8 @@ import SuccessPage from "../paginas/SuccessPage";
 import { useState } from "react";
 
 export default function App() {
-const [form, setForm] =  useState()
+const [sent, setSent] =  useState()
+
     return (
         <BrowserRouter>
             <GlobalStyle />
@@ -16,8 +17,8 @@ const [form, setForm] =  useState()
             <Routes>
                 <Route  path="/" element={<CatalogPage />} />
                 <Route path="/sessoes/:idMovie" element={<SessionPage />} />
-                <Route path="/assentos/:idSession" element={<SeatsPage />} />
-                <Route path="/sucesso" element={<SuccessPage form={form}/>} />
+                <Route path="/assentos/:idSession" element={<SeatsPage setSent={setSent}/>} />
+                <Route path="/sucesso" element={<SuccessPage sent={sent}/>} />
             </Routes>
         </BrowserRouter>
     );
