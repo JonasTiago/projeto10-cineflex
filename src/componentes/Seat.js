@@ -1,12 +1,14 @@
-import { useState } from "react";
 import styled from "styled-components";
 
-export default function Seat({ seatNum, isAvailable }) {
+export default function Seat({ seatId, seatNum, isAvailable, reservar }) {
 
     return (
         <>
-            {isAvailable ? <Available>{seatNum}</Available> :
-             <Unavailable>{seatNum}</Unavailable> }
+            {isAvailable === undefined ?
+                <Selected onClick={() => reservar(seatId)}>{seatNum}</Selected> :
+                (isAvailable ?
+                    <Available onClick={() => reservar(seatId)}>{seatNum}</Available> :
+                    <Unavailable onClick={() => alert(`Assento ${seatNum} está ocupado`)}>{seatNum}</Unavailable>)}
         </>
     );
 };

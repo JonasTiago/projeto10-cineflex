@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../componentes/Footer";
-import FreeTime from "../componentes/FreeTime";
+import Sessions from "../componentes/Sessions";
 
 export default function SessionPage() {
     const [date, setDate] = useState([]);
@@ -23,7 +23,7 @@ export default function SessionPage() {
             <Main>
                 <h2>Selecione o horário</h2>
                 <div>
-                    {date && date.days.map( date => <FreeTime key={date.id} date={date} />)}
+                    {date && date.days.map( date => <Sessions key={date.id} date={date} />)}
                 </div>
             </Main>
             <Footer url={date.posterURL} title={date.title} date={''}/>

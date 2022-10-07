@@ -4,9 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CatalogPage from "../paginas/CatalogPage";
 import SessionPage from "../paginas/SessionPage"
 import SeatsPage from "../paginas/SeatsPage";
+import SuccessPage from "../paginas/SuccessPage";
+import { useState } from "react";
 
 export default function App() {
-
+const [form, setForm] =  useState()
     return (
         <BrowserRouter>
             <GlobalStyle />
@@ -15,7 +17,7 @@ export default function App() {
                 <Route  path="/" element={<CatalogPage />} />
                 <Route path="/sessoes/:idMovie" element={<SessionPage />} />
                 <Route path="/assentos/:idSession" element={<SeatsPage />} />
-                
+                <Route path="/sucesso" element={<SuccessPage form={form}/>} />
             </Routes>
         </BrowserRouter>
     );

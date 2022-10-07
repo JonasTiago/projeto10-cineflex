@@ -3,28 +3,38 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../componentes/Footer";
+import Form from "../componentes/Form";
 import Seat from "../componentes/Seat";
 
 export default function SeatsPage() {
     const [session, setSession] = useState([]);
-    const {idSession} = useParams(0);
+    const { idSession } = useParams(0);
+    const [reserved, setReserved] = useState([]);
+
+    function reservar(seatId) {
+        setReserved([...reserved, seatId])
+        console.log(reserved)
+    }
 
     useEffect(() => {
         axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`).then(resposta => setSession(resposta.data));
     }, [])
 
-
     if (session.length === 0) {
         return <p>carregando</p>;
     };
-
 
     return (
         <>
             <PageStyle>
                 <h2>Selecione o(s) assento(s)</h2>
                 <SectionSeat>
-                    {session.seats.map(se => <Seat key={se.id} seatNum={se.name} isAvailable={se.isAvailable} onClick={() => console.log(se.name)} />)}
+
+                    {session.seats.map(se =>
+                        <Seat key={se.id} seatId={se.id} seatNum={se.name}
+                            isAvailable={reserved.includes(se.id) ? undefined : se.isAvailable}
+                            reservar={reservar} />)}
+
                 </SectionSeat>
                 <Subtitle>
                     <section>
@@ -39,17 +49,22 @@ export default function SeatsPage() {
                         <p>Indisponivel</p>
                     </section>
                 </Subtitle>
-                <form>
-                    <label>
+                <Form reserved={reserved}/>
+                {/* <form onSubmit={sendReservation}>
+                    <label htmlFor="nome">
                         Nome do comprador:<br />
-                        <input type="text" placeholder="Digite seu nome..." />
+                        <input id="nome"
+                            type="text"
+                            placeholder="Digite seu nome..." />
                     </label>
-                    <label>
+                    <label htmlFor="cpf">
                         CPF do comprador:<br />
-                        <input type="text" placeholder="Digite seu CPF..." />
+                        <input id="cpf" type="cpf" placeholder="Digite seu CPF..." />
                     </label>
-                    <button>Reservar assento(s)</button>
-                </form>
+                    <input type="submit"
+                        value="Reservar assento(s)"
+                    />
+                </form> */}
             </PageStyle>
             <Footer url={session.movie.posterURL}
                 title={session.movie.title}
@@ -72,41 +87,7 @@ const PageStyle = styled.div`
         color: #293845;
     }
 
-    form{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        margin:10px;
-        label{
-            font-size:18px;
-            font-family:roboto, sans-serif;
-            margin:5px;
-            color:#293845;
-            input{
-                width:337px;
-                height:51px;
-                margin-top:2px;
-                margin-bottom:7px;
-                font-size:18px;
-                    font-family:roboto, sans-serif;
-                    padding:0 10px;
-                &::placeholder {
-                    color: #AFAFAF;
-                    font-style:italic;
-                }
-            }
-        }
-        button{
-            margin-top:35px;
-            background-color:#E8833A;
-            width:225px;
-            height: 42px;
-            font-size:18px;
-            border:none;
-            color:#fff;
-            font-weight:400;
-        }
-    }
+    
 
 `
 

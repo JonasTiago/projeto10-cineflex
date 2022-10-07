@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 
 export default function Footer({url, title, date}){
-    console.log(url)
 
     return (
         <FooterStyle>
