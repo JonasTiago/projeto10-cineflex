@@ -6,7 +6,7 @@ export default function Poster({ urlMovie, idMovie }) {
     return (
         <Posters>
             <Link to={`/sessoes/${idMovie}`} >
-                <div>
+                <div data-identifier="movie-outdoor">
                     <img src={urlMovie} alt='poster movie'/>
                 </div>
             </Link>

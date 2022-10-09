@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export default function Seat({ seatId, seatNum, isAvailable, reservar, disabled}) {
+export default function Seat({ seatId, seatNum, isAvailable, reservar, disabled }) {
 
     return (
         <>
             {isAvailable === undefined ?
-                <Selected onClick={() => reservar(seatId, seatNum)} disabled={disabled}>{seatNum}</Selected> :
+                <Selected onClick={() => reservar(seatId, seatNum)} disabled={disabled} data-identifier="seat">{seatNum}</Selected> :
                 (isAvailable ?
-                    <Available onClick={() => reservar(seatId, seatNum)} disabled={disabled}>{seatNum}</Available> :
-                    <Unavailable onClick={() => alert(`Assento ${seatNum} está ocupado`)} disabled={disabled}>{seatNum}</Unavailable>)}
+                    <Available onClick={() => reservar(seatId, seatNum)} disabled={disabled} data-identifier="seat">{seatNum}</Available> :
+                    <Unavailable onClick={() => alert(`Assento ${seatNum} está ocupado`)} disabled={disabled} data-identifier="seat">{seatNum}</Unavailable>)}
         </>
     );
 };

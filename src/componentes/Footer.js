@@ -3,8 +3,8 @@ import styled from "styled-components";
 export default function Footer({url, title, date}){
     return (
         <FooterStyle>
-            <img src={url} alt='poster movie'/>
-            <h3>{title} <br/>{date}</h3>
+            <img src={url} alt='poster movie' data-identifier="movie-img-preview"/>
+            <h3 data-identifier="movie-and-session-infos-preview">{title} <br/>{date}</h3>
         </FooterStyle>
     );
 };

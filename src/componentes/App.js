@@ -8,17 +8,17 @@ import SuccessPage from "../paginas/SuccessPage";
 import { useState } from "react";
 
 export default function App() {
-const [sent, setSent] =  useState()
+    const [sent, setSent] = useState();
 
     return (
         <BrowserRouter>
             <GlobalStyle />
             <Header />
             <Routes>
-                <Route  path="/" element={<CatalogPage />} />
+                <Route path="/" element={<CatalogPage />} />
                 <Route path="/sessoes/:idMovie" element={<SessionPage />} />
-                <Route path="/assentos/:idSession" element={<SeatsPage setSent={setSent}/>} />
-                <Route path="/sucesso" element={<SuccessPage sent={sent}/>} />
+                <Route path="/assentos/:idSession" element={<SeatsPage setSent={setSent} />} />
+                <Route path="/sucesso" element={<SuccessPage sent={sent} />} />
             </Routes>
         </BrowserRouter>
     );

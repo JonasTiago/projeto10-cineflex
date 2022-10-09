@@ -30,7 +30,6 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
                 ids: [...reserved],
             }
         );
-        console.log(form);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reserved]);
 
@@ -39,6 +38,7 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
         e.preventDefault();
         const URL = 'https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many';
         const body = form;
+
         axios.post(URL, body).then(() =>
             navigate("/sucesso")
 
@@ -49,7 +49,7 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
             name: '',
             cpf: ''
         });
-    }
+    };
 
     return (
         <FormStyle onSubmit={sendReservation}>
@@ -59,7 +59,8 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
                     type="text"
                     value={form.name}
                     onChange={fillForm}
-                    placeholder="Digite seu nome..." />
+                    placeholder="Digite seu nome..."
+                    data-identifier="buyer-name-input" />
             </label>
             <label htmlFor="cpf">
                 CPF do comprador:<br />
@@ -67,10 +68,12 @@ export default function Form({ reserved, setSent, seatNumb, session }) {
                     type="cpf"
                     value={form.cpf}
                     onChange={fillForm}
-                    placeholder="Digite seu CPF..." />
+                    placeholder="Digite seu CPF..."
+                    data-identifier="buyer-cpf-input" />
             </label>
             <input type="submit"
                 value="Reservar assento(s)"
+                data-identifier="reservation-btn"
             />
         </FormStyle>
     );
@@ -104,7 +107,7 @@ const FormStyle = styled.form`
         }
     }
     input{
-        margin-top:35px;
+        margin:30px 0 100px 0;
         background-color:#E8833A;
         width:225px;
         height: 42px;

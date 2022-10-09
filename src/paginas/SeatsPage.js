@@ -69,15 +69,14 @@ const PageStyle = styled.div`
     align-items:center;
     width:100%;
     height:80vh;
+    overflow-y: auto;
+
 
     h2{
         font-size:24px;
         text-align:center;
         color: #293845;
     }
-
-    
-
 `;
 
 const SectionSeat = styled.div`

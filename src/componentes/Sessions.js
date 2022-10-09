@@ -4,11 +4,11 @@ import styled from "styled-components";
 export default function Sessions({ date }) {
     return (
         <TimeStyle>
-            <h4>{date.weekday} - {date.date}</h4>
+            <h4 data-identifier="session-date">{date.weekday} - {date.date}</h4>
             <div>
                 {date.showtimes.map(time =>
                     <Link key={time.id} to={`/assentos/${time.id}`}>
-                        <button >{time.name}</button>
+                        <button data-identifier="hour-minute-btn" >{time.name}</button>
                     </Link>
                 )}
             </div>
